@@ -77,9 +77,6 @@ download_netcdf_files(file_links)
 ##############################################
 #         Download multiple netcdf file      #
 ##############################################
-
-
-
 import os
 import requests
 from bs4 import BeautifulSoup
