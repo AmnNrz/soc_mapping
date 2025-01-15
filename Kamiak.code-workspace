@@ -1,0 +1,13 @@
+		{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../../../../weka/data/lab/adam/data/metdata/historical/UI_historical"
+		}
+	],
+	"settings": {
+		"terminal.integrated.cwd":"/home/a.norouzikandelati/"
+	}
+}
