@@ -1,6 +1,7 @@
 # ---
 # jupyter:
 #   jupytext:
+#     formats: ipynb,py
 #     text_representation:
 #       extension: .py
 #       format_name: light
@@ -29,6 +30,19 @@ output_csv_path = path_to_data + 'gridmet_lat_lon/'
 gdf_2022 = gpd.read_file(shp_2022_path)
 gdf_2023 = gpd.read_file(shp_2023_path)
 
+
+# +
+gdf_2022['Year'] = 2022
+gdf_2023['Year'] = 2023
+
+cols = ['pointID', 'Year']
+gdf_22_23 = pd.concat([gdf_2022[cols], gdf_2023[cols]])
+gdf_22_23.to_csv(
+    "/Users/aminnorouzi/Library/CloudStorage/OneDrive-WashingtonStateUniversity(email.wsu.edu)/Ph.D/Projects/soc_mapping/data/year_pointID.csv"
+, index=False)
+
+
+# +
 def add_lat_lon(gdf):
 
     # Calculate centroids of the polygons
@@ -41,6 +55,7 @@ def add_lat_lon(gdf):
     # Drop the centroid column if not needed
     gdf = gdf.drop(columns=["centroid"])
     return gdf
+
 
 # Add lat and lon to the shapfiles
 gdf_2022_shp = add_lat_lon(gdf_2022)
@@ -56,9 +71,3 @@ gdf_2023_shp.to_csv(output_csv_path + "shp_2023_lat_lon.csv", index=False)
 # Export to shapefiles (including all supporting files)
 gdf_2022_shp.to_file(output_csv_path + "shp_2022_lat_lon", driver="ESRI Shapefile")
 gdf_2023_shp.to_file(output_csv_path + "shp_2023_lat_lon", driver="ESRI Shapefile")
-# -
-
-output_csv_path
-
-gdf_2022_shp
-
